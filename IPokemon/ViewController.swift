@@ -21,35 +21,12 @@ class ViewController: UITableViewController {
         title = "iPokemon"
      
      let urlString = "https://pokeapi.co/api/v2/pokemon?limit=135"
-//        let urlStringBulbasur = "https://pokeapi.co/api/v2/pokemon/bulbasaur"
-//
         if let url = URL(string: urlString) {
             if let data = try? Data(contentsOf: url) {
                 parse(json: data)
             }
         }
-//        if let url = URL(string: urlStringBulbasur) {
-//            if let data = try? Data(contentsOf: url) {
-//                parseBulbasur(json: data)
-//            }
-//        }
-        
-        
-//        PokeApi().getData() { pokemon in
-//            self.pokemon = pokemon
-//
-////            for pokemon in pokemon {
-////                print(pokemon.name)
-////                self.pokemon.append(pokemon)
-////            }
-//        }
-        
-        
-        
-       PokeSelectedApi().getData(url: "https://pokeapi.co/api/v2/pokemon/1") { url in print(url)}
-//
-//
-//
+
         
         
     }
@@ -62,15 +39,7 @@ class ViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-//    func parseBulbasur (json: Data){
-//        let decoder = JSONDecoder()
-//
-//        if let jsonPokemons = try? decoder.decode(PokemonSprites.self, from: json){
-//            pokemonSprites = jsonPokemons.sprites
-//
-//            tableView.reloadData()
-//        }
-//    }
+    
 
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,18 +49,20 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
        let pokemon = pokemons[indexPath.row]
-//        let spritePok = pokemonSprites[indexPath.row]
-//        print(spritePok)
-        
-        
         cell.textLabel?.text = pokemon.name
-
-   // cell.textLabel?.text = pokemon.name
-//        cell.detailTextLabel?.text = "Subtitle goes here"
-//
-      //  if let url = URL(string: url)
-     
         return cell
     }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        vc.name = pokemons[indexPath.row].name
+        vc.pokemon = pokemons[indexPath.row]
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+
+    }
+    
+    
+    
 }
 
