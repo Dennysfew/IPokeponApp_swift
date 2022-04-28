@@ -7,22 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9A19882C280C3453002A77E8 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19882B280C3453002A77E8 /* CustomImageView.swift */; };
 		9A3144632806F0920008C296 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3144622806F0920008C296 /* AppDelegate.swift */; };
 		9A3144652806F0920008C296 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3144642806F0920008C296 /* SceneDelegate.swift */; };
 		9A3144672806F0920008C296 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3144662806F0920008C296 /* ViewController.swift */; };
 		9A31446A2806F0920008C296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3144682806F0920008C296 /* Main.storyboard */; };
 		9A31446C2806F0940008C296 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A31446B2806F0940008C296 /* Assets.xcassets */; };
 		9A31446F2806F0940008C296 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A31446D2806F0940008C296 /* LaunchScreen.storyboard */; };
+		9AC30CEB2818840500058366 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC30CEA2818840500058366 /* APIService.swift */; };
 		9AE48308280EAB9400462E4C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE48307280EAB9400462E4C /* DetailViewController.swift */; };
-		9AE48382280F22FF00462E4C /* Sprite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE48380280F22FF00462E4C /* Sprite.swift */; };
-		9AE48383280F22FF00462E4C /* ExactPokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE48381280F22FF00462E4C /* ExactPokemon.swift */; };
 		9AEB046A280959CD0000C315 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB0469280959CD0000C315 /* Pokemon.swift */; };
 		9AEB046E280967BC0000C315 /* PokemonSelected.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB046D280967BC0000C315 /* PokemonSelected.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		9A19882B280C3453002A77E8 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		9A31445F2806F0920008C296 /* IPokemon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IPokemon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A3144622806F0920008C296 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A3144642806F0920008C296 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,9 +28,8 @@
 		9A31446B2806F0940008C296 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A31446E2806F0940008C296 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A3144702806F0940008C296 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9AC30CEA2818840500058366 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		9AE48307280EAB9400462E4C /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
-		9AE48380280F22FF00462E4C /* Sprite.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sprite.swift; sourceTree = "<group>"; };
-		9AE48381280F22FF00462E4C /* ExactPokemon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExactPokemon.swift; sourceTree = "<group>"; };
 		9AEB0469280959CD0000C315 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		9AEB046D280967BC0000C315 /* PokemonSelected.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonSelected.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -52,7 +48,6 @@
 		9A3144562806F0910008C296 = {
 			isa = PBXGroup;
 			children = (
-				9A19882B280C3453002A77E8 /* CustomImageView.swift */,
 				9A3144612806F0920008C296 /* IPokemon */,
 				9A3144602806F0920008C296 /* Products */,
 			);
@@ -72,13 +67,12 @@
 				9A3144622806F0920008C296 /* AppDelegate.swift */,
 				9A3144642806F0920008C296 /* SceneDelegate.swift */,
 				9A3144662806F0920008C296 /* ViewController.swift */,
+				9AE48307280EAB9400462E4C /* DetailViewController.swift */,
+				9AC30CEA2818840500058366 /* APIService.swift */,
 				9AD0F805280F6CAA00F61778 /* Models */,
 				9A3144682806F0920008C296 /* Main.storyboard */,
-				9AE48307280EAB9400462E4C /* DetailViewController.swift */,
 				9A31446B2806F0940008C296 /* Assets.xcassets */,
 				9A31446D2806F0940008C296 /* LaunchScreen.storyboard */,
-				9AE48381280F22FF00462E4C /* ExactPokemon.swift */,
-				9AE48380280F22FF00462E4C /* Sprite.swift */,
 				9A3144702806F0940008C296 /* Info.plist */,
 			);
 			path = IPokemon;
@@ -164,14 +158,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AE48383280F22FF00462E4C /* ExactPokemon.swift in Sources */,
 				9AE48308280EAB9400462E4C /* DetailViewController.swift in Sources */,
 				9A3144672806F0920008C296 /* ViewController.swift in Sources */,
-				9A19882C280C3453002A77E8 /* CustomImageView.swift in Sources */,
 				9AEB046A280959CD0000C315 /* Pokemon.swift in Sources */,
 				9AEB046E280967BC0000C315 /* PokemonSelected.swift in Sources */,
 				9A3144632806F0920008C296 /* AppDelegate.swift in Sources */,
-				9AE48382280F22FF00462E4C /* Sprite.swift in Sources */,
+				9AC30CEB2818840500058366 /* APIService.swift in Sources */,
 				9A3144652806F0920008C296 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

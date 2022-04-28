@@ -8,18 +8,40 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
-    @IBOutlet weak var height: UILabel!
+    
+    @IBOutlet weak var heightLbl: UILabel!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var weight: UILabel!
+    @IBOutlet weak var weightLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     
+    let apiService: APIService = APIService()
+    
     var name: String?
+    
     var pokemon: Pokemon?
+    
     var pokemonSelected: PokemonSelected? {
         didSet{
+            
+            guard let pokemonWeight = pokemonSelected?.weight else { return }
+            guard let pokemonHeight = pokemonSelected?.height else { return }
+            
+            DispatchQueue.main.async {
+                self.weightLbl.text = String(pokemonWeight)
+                self.heightLbl.text = String(pokemonHeight)
+            }
+            
             guard let imageUrl = pokemonSelected?.sprites.front_default else { return }
-            fetchImage(urlString: imageUrl)
+            
+            apiService.fetchImage(urlString: imageUrl) { [weak self] value in
+                guard let picture = value else { return }
+                
+                DispatchQueue.main.async {
+                    self?.imageView.image = picture
+                }
+                
+            }
+            
         }
     }
     
@@ -28,64 +50,30 @@ class DetailViewController: UIViewController {
         
         nameLbl.text = name ?? ""
         
-        guard let pokemon = pokemon else {
-            return
-        }
+        guard let pokemon = pokemon else { return }
         
-        fetchData(urlString: pokemon.url)
-        
-    }
-    
-    private func fetchData(urlString: String){
-        let url = URL(string: urlString)
-        
-        guard url != nil else {
-            return
-        }
-        
-        
-        let defaultSession = URLSession(configuration: .default)
-        
-        let dataTask = defaultSession.dataTask(with: url!) { [weak self] (data:Data?,response: URLResponse?, error: Error?) in
-            if (error != nil) {
-                print(error!)
-                return
-                }
+        apiService.fetchData(urlString: pokemon.url) { [weak self] value in
+            guard let data = value else { return }
+            
             do {
-                let json = try JSONDecoder().decode(PokemonSelected.self, from: data!)
-                self?.pokemonSelected = json
-               
-             }
-             catch {
+                
+                let pokemonSelected = try JSONDecoder().decode(PokemonSelected.self, from: data)
+                
+                DispatchQueue.main.async {
+                    self?.pokemonSelected = pokemonSelected
+                    
+                }
+            }
+            catch {
                 print(error)
                 return
-             }
-            
-          
-        }
-    
-    
-        dataTask.resume()
-    }
-    
-    private func fetchImage(urlString: String) {
-        guard let url = URL(string: urlString) else{
-            fatalError("some error")
-        }
-        let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { (data, response, error) in
-            
-            DispatchQueue.main.async {
-                guard let data = data, error == nil else { return }
-                self.imageView.image = UIImage(data: data)
             }
-            
         }
-        task.resume()
+        
     }
     
 }
-    
+
 
 
 

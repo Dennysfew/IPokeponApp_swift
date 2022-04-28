@@ -65,7 +65,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSF-eE-97z">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CSF-eE-97z">
                                 <rect key="frame" x="10" y="74" width="408" height="300"/>
                                 <color key="backgroundColor" systemColor="systemGray3Color"/>
                                 <constraints>
@@ -109,10 +109,10 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="height" destination="Xry-PG-b20" id="Qoc-dT-6XZ"/>
-                        <outlet property="imageView" destination="CSF-eE-97z" id="jce-lI-1Tx"/>
-                        <outlet property="nameLbl" destination="o0h-Iy-rOt" id="h1A-Bb-y6c"/>
-                        <outlet property="weight" destination="VeN-0X-B3E" id="My0-o3-zfz"/>
+                        <outlet property="heightLbl" destination="Xry-PG-b20" id="dyD-rh-shq"/>
+                        <outlet property="imageView" destination="CSF-eE-97z" id="mBD-CU-r5N"/>
+                        <outlet property="nameLbl" destination="o0h-Iy-rOt" id="1dZ-Pl-VZq"/>
+                        <outlet property="weightLbl" destination="VeN-0X-B3E" id="OsK-NC-pp9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4cV-Sn-75G" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
