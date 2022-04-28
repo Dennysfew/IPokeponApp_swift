@@ -9,47 +9,35 @@ import UIKit
 
 class ViewController: UITableViewController {
     var pokemons = [Pokemon]()
+    let apiService: APIService = APIService()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "iPokemon"
         
         let urlStringMain = "https://pokeapi.co/api/v2/pokemon?limit=135"
-        fetchDataPokemon(urlString: urlStringMain)
-    }
-
-    
-    private func fetchDataPokemon(urlString: String){
-        let url = URL(string: urlString)
         
-        guard url != nil else {
-            return
-        }
-        
-        let defaultSession = URLSession(configuration: .default)
-        
-        let dataTask = defaultSession.dataTask(with: url!) { [weak self] (data:Data?,response: URLResponse?, error: Error?) in
+        apiService.fetchData(urlString: urlStringMain) { [weak self] value in
             
-            if (error != nil) {
-                print(error!)
-                return
-                }
+            guard let data = value else { return }
             
             do {
-                let json = try JSONDecoder().decode(Pokemons.self, from: data!)
-    
+                let pokemon = try JSONDecoder().decode(Pokemons.self, from: data)
+                
                 DispatchQueue.main.async {
-                    self?.pokemons = json.results
+                    self?.pokemons = pokemon.results
                     self?.tableView.reloadData()
                 }
-             }
-             catch {
+            }
+            catch {
                 print(error)
                 return
-             }
+            }
         }
-        dataTask.resume()
+        
     }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return pokemons.count
@@ -66,13 +54,10 @@ class ViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let vc = storyboard.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        vc.name = pokemons[indexPath.row].name
         vc.pokemon = pokemons[indexPath.row]
         
         self.navigationController?.pushViewController(vc, animated: true)
         
     }
-    
-    
     
 }

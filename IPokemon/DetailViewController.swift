@@ -16,19 +16,20 @@ class DetailViewController: UIViewController {
     
     let apiService: APIService = APIService()
     
-    var name: String?
-    
     var pokemon: Pokemon?
     
     var pokemonSelected: PokemonSelected? {
         didSet{
             
+            guard let pokemonName = pokemonSelected?.name else { return }
             guard let pokemonWeight = pokemonSelected?.weight else { return }
             guard let pokemonHeight = pokemonSelected?.height else { return }
-            
+           
             DispatchQueue.main.async {
+                self.nameLbl.text = String(pokemonName)
                 self.weightLbl.text = String(pokemonWeight)
                 self.heightLbl.text = String(pokemonHeight)
+                
             }
             
             guard let imageUrl = pokemonSelected?.sprites.front_default else { return }
@@ -48,7 +49,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        nameLbl.text = name ?? ""
+    
         
         guard let pokemon = pokemon else { return }
         

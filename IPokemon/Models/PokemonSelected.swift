@@ -12,7 +12,7 @@ struct PokemonSelected: Codable {
     var sprites: PokemonSprites
     var weight: Int
     var height: Int
-
+    var name: String
 }
 
 struct PokemonSprites: Codable{
