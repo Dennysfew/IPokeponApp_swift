@@ -18,10 +18,6 @@ class ViewController: UITableViewController {
            
         }
     }
-    //var imageOfPokemon = UIImage()
-    
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +42,6 @@ class ViewController: UITableViewController {
                             
                             let pokemonSelected = try JSONDecoder().decode(PokemonSelected.self, from: data)
                             
-                           
                             self?.pokemonSelected.append(pokemonSelected)
                         }
                         catch {
@@ -55,9 +50,7 @@ class ViewController: UITableViewController {
                         }
                     }
                 })
-                
-                
-                
+               
                 DispatchQueue.main.async {
                     
                     self?.pokemons = pokemon.results
@@ -88,21 +81,11 @@ class ViewController: UITableViewController {
         apiService.fetchImage(urlString: imageUrl) {  value in
             guard let picture = value else { return }
             
-
             DispatchQueue.main.async {
                 cell.imageView?.image = picture
             }
-            
-         
 
         }
-        
-        
-        
-        
-        
-        
-//        cell.imageView?.image = imageOfPokemon
         return cell
     }
     

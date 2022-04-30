@@ -23,7 +23,6 @@ final class APIService: NSObject {
                 return
             }
             completion?(data)
-            
         }
         dataTask.resume()
     }
@@ -35,7 +34,6 @@ final class APIService: NSObject {
         }
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url) { (data, response, error) in
-            
             
             completion?(UIImage(data: data!))
         }

@@ -24,8 +24,8 @@ class DetailViewController: UIViewController {
             guard let pokemonName = pokemonSelected?.name else { return }
             guard let pokemonWeight = pokemonSelected?.weight else { return }
             guard let pokemonHeight = pokemonSelected?.height else { return }
-           
-
+            
+            
             DispatchQueue.main.async {
                 self.nameLbl.text = String(pokemonName)
                 self.weightLbl.text = String(pokemonWeight)
@@ -38,16 +38,11 @@ class DetailViewController: UIViewController {
             apiService.fetchImage(urlString: imageUrl) { [weak self] value in
                 guard let picture = value else { return }
                 
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                let dvc = storyboard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-//                
+                
                 DispatchQueue.main.async {
                     self?.imageView.image = picture
-                   // dvc.imageOfPokemon = picture
+                    
                 }
-                
-             
-
             }
             
         }
@@ -55,8 +50,6 @@ class DetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-    
         
         guard let pokemon = pokemon else { return }
         
