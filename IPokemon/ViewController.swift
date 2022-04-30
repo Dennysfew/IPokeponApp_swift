@@ -10,11 +10,24 @@ import UIKit
 class ViewController: UITableViewController {
     var pokemons = [Pokemon]()
     let apiService: APIService = APIService()
+    var pokemonSelected = [PokemonSelected]() {
+        didSet {
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+           
+        }
+    }
+    //var imageOfPokemon = UIImage()
+    
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "iPokemon"
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
         
         let urlStringMain = "https://pokeapi.co/api/v2/pokemon?limit=135"
         
@@ -25,7 +38,28 @@ class ViewController: UITableViewController {
             do {
                 let pokemon = try JSONDecoder().decode(Pokemons.self, from: data)
                 
+                pokemon.results.forEach({
+                    self?.apiService.fetchData(urlString: $0.url) { [weak self] value in
+                        guard let data = value else { return }
+                        
+                        do {
+                            
+                            let pokemonSelected = try JSONDecoder().decode(PokemonSelected.self, from: data)
+                            
+                           
+                            self?.pokemonSelected.append(pokemonSelected)
+                        }
+                        catch {
+                            print(error)
+                            return
+                        }
+                    }
+                })
+                
+                
+                
                 DispatchQueue.main.async {
+                    
                     self?.pokemons = pokemon.results
                     self?.tableView.reloadData()
                 }
@@ -48,6 +82,27 @@ class ViewController: UITableViewController {
         let pokemon = pokemons[indexPath.row]
         cell.textLabel?.text = pokemon.name
         
+        guard indexPath.row < pokemonSelected.count else { return cell }
+        let imageUrl = pokemonSelected[indexPath.row].sprites.front_default
+        
+        apiService.fetchImage(urlString: imageUrl) {  value in
+            guard let picture = value else { return }
+            
+
+            DispatchQueue.main.async {
+                cell.imageView?.image = picture
+            }
+            
+         
+
+        }
+        
+        
+        
+        
+        
+        
+//        cell.imageView?.image = imageOfPokemon
         return cell
     }
     
