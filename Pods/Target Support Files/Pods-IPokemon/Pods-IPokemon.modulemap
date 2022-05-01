@@ -1,0 +1,6 @@
+framework module Pods_IPokemon {
+  umbrella header "Pods-IPokemon-umbrella.h"
+
+  export *
+  module * { export * }
+}

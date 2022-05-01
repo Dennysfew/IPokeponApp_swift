@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class DetailViewController: UIViewController {
     
@@ -14,6 +15,7 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var weightLbl: UILabel!
     @IBOutlet weak var nameLbl: UILabel!
     
+
     let apiService: APIService = APIService()
     
     var pokemon: Pokemon?
@@ -25,7 +27,6 @@ class DetailViewController: UIViewController {
             guard let pokemonWeight = pokemonSelected?.weight else { return }
             guard let pokemonHeight = pokemonSelected?.height else { return }
             
-            
             DispatchQueue.main.async {
                 self.nameLbl.text = String(pokemonName)
                 self.weightLbl.text = String(pokemonWeight)
@@ -35,16 +36,8 @@ class DetailViewController: UIViewController {
             
             guard let imageUrl = pokemonSelected?.sprites.front_default else { return }
             
-            apiService.fetchImage(urlString: imageUrl) { [weak self] value in
-                guard let picture = value else { return }
-                
-                
-                DispatchQueue.main.async {
-                    self?.imageView.image = picture
-                    
-                }
-            }
-            
+            let resource = ImageResource(downloadURL: URL(string: imageUrl)!, cacheKey: imageUrl)
+            imageView?.kf.setImage(with: resource)
         }
     }
     
@@ -61,6 +54,7 @@ class DetailViewController: UIViewController {
                 let pokemonSelected = try JSONDecoder().decode(PokemonSelected.self, from: data)
                 
                 DispatchQueue.main.async {
+                    
                     self?.pokemonSelected = pokemonSelected
                     
                 }

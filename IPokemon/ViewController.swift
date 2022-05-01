@@ -6,16 +6,19 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UITableViewController {
     var pokemons = [Pokemon]()
     let apiService: APIService = APIService()
+    
     var pokemonSelected = [PokemonSelected]() {
+        
         didSet {
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
-           
+            
         }
     }
     
@@ -41,7 +44,6 @@ class ViewController: UITableViewController {
                         do {
                             
                             let pokemonSelected = try JSONDecoder().decode(PokemonSelected.self, from: data)
-                            
                             self?.pokemonSelected.append(pokemonSelected)
                         }
                         catch {
@@ -50,7 +52,7 @@ class ViewController: UITableViewController {
                         }
                     }
                 })
-               
+                
                 DispatchQueue.main.async {
                     
                     self?.pokemons = pokemon.results
@@ -78,14 +80,10 @@ class ViewController: UITableViewController {
         guard indexPath.row < pokemonSelected.count else { return cell }
         let imageUrl = pokemonSelected[indexPath.row].sprites.front_default
         
-        apiService.fetchImage(urlString: imageUrl) {  value in
-            guard let picture = value else { return }
-            
-            DispatchQueue.main.async {
-                cell.imageView?.image = picture
-            }
-
-        }
+        
+        let resource = ImageResource(downloadURL: URL(string: imageUrl)!, cacheKey: imageUrl)
+        cell.imageView?.kf.setImage(with: resource)
+        
         return cell
     }
     
