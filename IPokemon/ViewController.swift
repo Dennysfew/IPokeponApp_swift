@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class ViewController: UITableViewController {
     var pokemons = [Pokemon]()
@@ -75,17 +76,20 @@ class ViewController: UITableViewController {
         let pokemon = pokemons[indexPath.row]
         cell.textLabel?.text = pokemon.name
         
-        guard indexPath.row < pokemonSelected.count else { return cell }
-        let imageUrl = pokemonSelected[indexPath.row].sprites.front_default
+       // guard indexPath.row < pokemonSelected.count else { return cell }
+        //let imageUrl = pokemonSelected[indexPath.row].sprites.front_default
         
-        apiService.fetchImage(urlString: imageUrl) {  value in
-            guard let picture = value else { return }
-            
-            DispatchQueue.main.async {
-                cell.imageView?.image = picture
-            }
-
-        }
+        let resource = ImageResource(downloadURL: URL(string: pokemonSelected[indexPath.row].sprites.front_default)!, cacheKey: pokemonSelected[indexPath.row].sprites.front_default)
+       
+        cell.imageView?.kf.setImage(with: resource)
+//        apiService.fetchImage(urlString: imageUrl) {  value in
+//            guard let picture = value else { return }
+//
+//            DispatchQueue.main.async {
+//                cell.imageView?.image = picture
+//            }
+//
+//        }
         return cell
     }
     

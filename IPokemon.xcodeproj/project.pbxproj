@@ -13,6 +13,7 @@
 		9A31446A2806F0920008C296 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3144682806F0920008C296 /* Main.storyboard */; };
 		9A31446C2806F0940008C296 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A31446B2806F0940008C296 /* Assets.xcassets */; };
 		9A31446F2806F0940008C296 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A31446D2806F0940008C296 /* LaunchScreen.storyboard */; };
+		9A916B5C281E9C0E00AE5AF2 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9A916B5B281E9C0E00AE5AF2 /* Kingfisher */; };
 		9AC30CEB2818840500058366 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC30CEA2818840500058366 /* APIService.swift */; };
 		9AE48308280EAB9400462E4C /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE48307280EAB9400462E4C /* DetailViewController.swift */; };
 		9AEB046A280959CD0000C315 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AEB0469280959CD0000C315 /* Pokemon.swift */; };
@@ -39,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A916B5C281E9C0E00AE5AF2 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,15 +96,20 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A3144732806F0940008C296 /* Build configuration list for PBXNativeTarget "IPokemon" */;
 			buildPhases = (
+				10AC41D7FFFA14F4B816DA72 /* [CP] Check Pods Manifest.lock */,
 				9A31445B2806F0910008C296 /* Sources */,
 				9A31445C2806F0910008C296 /* Frameworks */,
 				9A31445D2806F0910008C296 /* Resources */,
+				558D4B47068ADDC342893ADB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = IPokemon;
+			packageProductDependencies = (
+				9A916B5B281E9C0E00AE5AF2 /* Kingfisher */,
+			);
 			productName = IPokemon;
 			productReference = 9A31445F2806F0920008C296 /* IPokemon.app */;
 			productType = "com.apple.product-type.application";
@@ -131,6 +138,9 @@
 				Base,
 			);
 			mainGroup = 9A3144562806F0910008C296;
+			packageReferences = (
+				9A916B5A281E9C0E00AE5AF2 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 9A3144602806F0920008C296 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -152,6 +162,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		10AC41D7FFFA14F4B816DA72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-IPokemon-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		558D4B47068ADDC342893ADB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IPokemon/Pods-IPokemon-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-IPokemon/Pods-IPokemon-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-IPokemon/Pods-IPokemon-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9A31445B2806F0910008C296 /* Sources */ = {
@@ -384,6 +436,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		9A916B5A281E9C0E00AE5AF2 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		9A916B5B281E9C0E00AE5AF2 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9A916B5A281E9C0E00AE5AF2 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9A3144572806F0910008C296 /* Project object */;
 }
